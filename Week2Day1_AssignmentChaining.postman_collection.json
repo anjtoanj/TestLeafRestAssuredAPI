@@ -1,0 +1,195 @@
+{
+	"info": {
+		"_postman_id": "e60289c8-6372-46ee-8e44-392ece68ce65",
+		"name": "Week2Day1_AssignmentChaining",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25445294"
+	},
+	"item": [
+		{
+			"name": "CreateChangeRequest",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Assignment -Chaining \r",
+							"//      Repeatedly Create CR, Update CR and Delete CR - using data from csv\r",
+							"\r",
+							"pm.test(\"Change Request\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"//store the global variable value\r",
+							"var resp=pm.response.json();\r",
+							"var systemid =resp.result.sys_id;\r",
+							"pm.globals.set(\"SysID\",systemid);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\": \"Change Request\",\r\n    \"short_description\": \"Create Change Request\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/api/now/table/{{changeRequest}}?sysparm_fields=sys_id,number,short_description,description",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"{{changeRequest}}"
+					],
+					"query": [
+						{
+							"key": "sysparm_fields",
+							"value": "sys_id,number,short_description,description"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateChangeRequest",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response Code should be 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"short_description\": \"Updated  description for Change Request\",\r\n    \"description\": \"Updated description\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/api/now/table/{{changeRequest}}/{{SysID}}",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"{{changeRequest}}",
+						"{{SysID}}"
+					],
+					"query": [
+						{
+							"key": "short_description",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteChangeRequest",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Delete\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURL}}/api/now/table/{{changeRequest}}/{{SysID}}",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"{{changeRequest}}",
+						"{{SysID}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "jeRRd@3Q9D-k",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "admin",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "changeRequest",
+			"value": "change_request",
+			"type": "string"
+		}
+	]
+}
