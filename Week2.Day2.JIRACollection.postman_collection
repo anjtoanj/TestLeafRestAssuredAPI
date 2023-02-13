@@ -1,0 +1,210 @@
+{
+	"info": {
+		"_postman_id": "a7b1ab85-e6ab-4c39-9411-c3e66b7ca4b8",
+		"name": "JIRACollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25445294"
+	},
+	"item": [
+		{
+			"name": "CreateIssueType",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var resp =pm.response.json();\r",
+							"var bug2 = resp.key;\r",
+							"pm.globals.set(\"JIRABug\", bug2);\r",
+							"console.log(bug2);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fields\": {\r\n        \"project\": {\r\n            \"key\": \"TS\"\r\n        },\r\n        \"summary\": \"create issue in RA project\",\r\n        \"description\": \"Creating of an issue using project keys and issue type names using the postman\",\r\n        \"issuetype\": {\r\n            \"name\": \"Bug\"\r\n        }\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://anjurestapi2023.atlassian.net/rest/api/2/issue/",
+					"protocol": "https",
+					"host": [
+						"anjurestapi2023",
+						"atlassian",
+						"net"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issue",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SearchIssueType",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://anjurestapi2023.atlassian.net/rest/api/2/issue/{{JIRABug}}",
+					"protocol": "https",
+					"host": [
+						"anjurestapi2023",
+						"atlassian",
+						"net"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issue",
+						"{{JIRABug}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EditIssue",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fields\": {\r\n        \"description\": \"Bug creation Using REST API for testing\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://anjurestapi2023.atlassian.net/rest/api/2/issue/{{JIRABug}}",
+					"protocol": "https",
+					"host": [
+						"anjurestapi2023",
+						"atlassian",
+						"net"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issue",
+						"{{JIRABug}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteIssue",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://anjurestapi2023.atlassian.net/rest/api/2/issue/{{JIRABug}}",
+					"protocol": "https",
+					"host": [
+						"anjurestapi2023",
+						"atlassian",
+						"net"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issue",
+						"{{JIRABug}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ListAllIssues",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://anjurestapi2023.atlassian.net/jira/software/c/projects/TS/issues",
+					"protocol": "https",
+					"host": [
+						"anjurestapi2023",
+						"atlassian",
+						"net"
+					],
+					"path": [
+						"jira",
+						"software",
+						"c",
+						"projects",
+						"TS",
+						"issues"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "ATATT3xFfGF0nTNHOlFcHdNOY3AHf6sl5UC05TVklQz1ve2sqDu-EZkJ48U__-udPWzfYLVOwJDi4WTG21fslAJfPlO-EBVr1YLQkpK2CAxU5Xcwt_g855yzwLIvxZ_so6Xzwa6wIrCG6_Dp46qzYd1Vsrdy6E9_USAG0BX8Icg8fbYfSycG5v8=73ABE3B7",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "anjtoanj@gmail.com",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
