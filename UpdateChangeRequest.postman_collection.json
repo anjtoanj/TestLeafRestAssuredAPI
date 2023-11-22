@@ -1,0 +1,267 @@
+{
+	"info": {
+		"_postman_id": "79618bc0-0e22-4e4d-9a52-dc621643ce81",
+		"name": "UpdateChangeRequest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "25445294"
+	},
+	"item": [
+		{
+			"name": "Create change_request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Created a new change request\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"var resp = pm.response.json();\r",
+							"console.log(resp.result.short_description)\r",
+							"console.log(resp.result.sys_id)\r",
+							"var shortDescription = resp.result.short_description;\r",
+							"var sysID = resp.result.sys_id;\r",
+							"pm.collectionVariables.set(\"shortDesc\", shortDescription);\r",
+							"pm.globals.set(\"SysID\", sysID);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "vb-Ou7h^3AVM",
+						"username": "admin"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"work_notes\": \"\",\r\n    \"short_description\": \"Created through postman\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/api/now/table/change_request?sysparm_fields=short_description,sys_id",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"change_request"
+					],
+					"query": [
+						{
+							"key": "sysparm_fields",
+							"value": "short_description,sys_id"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateChangeRequest",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Created a new change request\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"using put method for hemcrest\");\r",
+							"});\r",
+							"var resp = pm.response.json();\r",
+							"console.log(resp.result.short_description)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "vb-Ou7h^3AVM",
+						"username": "admin"
+					}
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"short_description\": \"using put method for hemcrest\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/api/now/table/change_request/{{SysID}}?sysparm_fields=short_description",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"change_request",
+						"{{SysID}}"
+					],
+					"query": [
+						{
+							"key": "sysparm_fields",
+							"value": "short_description"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PatchChangeRequest",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Created a new change request\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"using patch method for hamcrest\");\r",
+							"});\r",
+							"var resp = pm.response.json();\r",
+							"console.log(resp.result.short_description)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "vb-Ou7h^3AVM",
+						"username": "admin"
+					}
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"short_description\": \"using patch method for hamcrest\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/api/now/table/change_request/{{SysID}}?sysparm_fields=short_description",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"change_request",
+						"{{SysID}}"
+					],
+					"query": [
+						{
+							"key": "sysparm_fields",
+							"value": "short_description"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteChangeRequest",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status line matches\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "vb-Ou7h^3AVM",
+						"username": "admin"
+					}
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"short_description\": \"using patch method for hamcrest\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{BaseURL}}/api/now/table/change_request/{{SysID}}"
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": {
+			"password": "vb-Ou7h^3AVM",
+			"username": "admin"
+		}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "shortDesc",
+			"value": "shortDescription",
+			"type": "string"
+		}
+	]
+}
